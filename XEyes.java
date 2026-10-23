@@ -59,8 +59,15 @@ public class XEyes extends JPanel implements MouseListener, MouseMotionListener{
     
     // move the pupil when the mouse is clicked
     public void mouseClicked (MouseEvent event) {
-        eye_1.movePupil(event.getX(), event.getY());
-        eye_2.movePupil(event.getX(), event.getY());
+        if(eye_1.inEye(event.getX(), event.getY()) || eye_2.inEye(event.getX(), event.getY())){
+            eye_1.pupilX = (int) (269 + (0.5 * 49));
+            eye_2.pupilX = (int) (372 + (0.5 * 49));
+            eye_1.pupilY = (int) (290 + (0.5 * 37));
+            eye_2.pupilY = (int) (290 + (0.5 * 37));
+        } else{
+            eye_1.movePupil(event.getX(), event.getY());
+            eye_2.movePupil(event.getX(), event.getY());
+        }
         eye_1.laser(event.getX(), event.getY());
         eye_2.laser(event.getX(), event.getY());
         
@@ -71,11 +78,18 @@ public class XEyes extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     public void mouseMoved (MouseEvent event) {
-        eye_1.movePupil(event.getX(), event.getY());
-        eye_2.movePupil(event.getX(), event.getY());
+        if(eye_1.inEye(event.getX(), event.getY()) || eye_2.inEye(event.getX(), event.getY())){
+            eye_1.pupilX = (int) (269 + (0.5 * 49));
+            eye_2.pupilX = (int) (372 + (0.5 * 49));
+            eye_1.pupilY = (int) (290 + (0.5 * 37));
+            eye_2.pupilY = (int) (290 + (0.5 * 37));
+        } else{
+            eye_1.movePupil(event.getX(), event.getY());
+            eye_2.movePupil(event.getX(), event.getY());
+        }
         eye_1.laser(event.getX(), event.getY());
         eye_2.laser(event.getX(), event.getY());
-
+        
         repaint();
     }
   
